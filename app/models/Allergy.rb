@@ -1,6 +1,6 @@
 class Allergy
-
-  attr_reader :user, :ingredient
+  attr_accessor :ingredient
+  attr_reader :user
 
     @@all = []
 
@@ -9,8 +9,6 @@ class Allergy
       @ingredient = ingredient
         Allergy.all << self
     end
-
-
     def self.all
         @@all
     end

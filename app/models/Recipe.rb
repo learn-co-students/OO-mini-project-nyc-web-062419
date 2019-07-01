@@ -41,22 +41,20 @@ class Recipe
       end
     end 
 
-
-
     def self.all
         @@all
     end
 
+    def allergens
+        arr = []
+        ingredients.each do |ing|
+        arr  << Allergy.all.find {|a| a.ingredient == ing}
+        end
+        arr.compact!
+        arr.map {|a| a.ingredient}
+    end
 
+    def add_ingredient ing
+        RecipeIngredient.new(self,ing)
+    end
 end
-
-
-# Recipe
-# Build the following methods on the Recipe class
-
-
-
-
-
-# Recipe#allergens should return all of the Ingredients in this recipe that are allergens for Users in our system.
-# Recipe#add_ingredients should take an array of ingredient instances as an argument, and associate each of those ingredients with this recipe

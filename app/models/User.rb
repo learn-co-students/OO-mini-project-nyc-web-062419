@@ -8,22 +8,31 @@ class User
     def self.all
         @@all
     end
-
     def my_recipecards
       RecipeCard.all.select do |recipecards|
         recipecards.user == self
       end
     end
+    def recipes
+        my_recipecards.map do |recipe_instance|
+            recipe_instance.recipe
+        end
+    end
+    def add_recipe_card(recipe, rating)
+        RecipeCard.new(recipe, self, rating)
+    end
+    def declare_allergy(ing)
+        Allergy.new(self, ing)
+    end
+    def allergens
+        Allergy.all.select {|allergy_instance| allergy_instance.user == self}
+        .map {|a| a.ingredient}
+    end
+    def top_three_recipes
+        my_recipecards.sort_by {|rec| rec.rating}.values_at(-1,-2,-3)
+    end
+    def most_recent_recipe
+        my_recipecards.sort_by {|rec| rec.date}.last
+    end   
+end 
 
-end #end user class
-
-# User
-# Build the following methods on the User class
-
-
-# User#recipes should return all of the recipes this user has recipe cards for
-# User#add_recipe_card should accept a recipe instance as an argument, as well as a date and rating, and create a new recipe card for this user and the given recipe
-# User#declare_allergy should accept anIngredient instance as an argument, and create a new Allergy instance for this User and the given Ingredient
-# User#allergens should return all of the ingredients this user is allergic to
-# User#top_three_recipes should return the top three highest rated recipes for this user.
-# User#most_recent_recipe should return the recipe most recently added to the user's cookbook.
