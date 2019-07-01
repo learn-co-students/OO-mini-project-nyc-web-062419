@@ -1,8 +1,8 @@
-class ClassName
+class Allergy
 
     @@all = []
     def initialize
-        .all << self
+        Allergy.all << self
     end
     def self.all
         @@all
