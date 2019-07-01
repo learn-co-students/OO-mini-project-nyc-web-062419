@@ -23,12 +23,15 @@ cake = Recipe.new("cake")
 recipecard1 = RecipeCard.new(cookies, alex, 2)
 recipecard2 = RecipeCard.new(muffins, colin, 6)
 recipecard3 = RecipeCard.new(muffins, yosef, 3)
+recipecard3 = RecipeCard.new(cake, yosef, 5)
 
 
 # seeding recipe card
 cookies_recipe = RecipeIngredient.new(cookies, flour)
 muffins_recipe = RecipeIngredient.new(muffins,sugar)
 cake_recipe = RecipeIngredient.new(cake, eggs)
+cake_recipe = RecipeIngredient.new(cake, flour)
+
 
 
 # seeding allergies
