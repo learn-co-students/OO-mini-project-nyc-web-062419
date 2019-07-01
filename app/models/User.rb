@@ -8,7 +8,14 @@ class User
     def self.all
         @@all
     end
-end
+
+    def my_recipecards
+      RecipeCard.all.select do |recipecards|
+        recipecards.user == self
+      end
+    end
+
+end #end user class
 
 # User
 # Build the following methods on the User class

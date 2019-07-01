@@ -5,9 +5,38 @@ class Recipe
         @name = name
         Recipe.all << self
     end
+
+    def my_recipecards
+      RecipeCard.all.select do |recipecards|
+        recipecards.recipe == self
+      end
+    end
+
+    def users
+      my_recipecards.map do |recipecards|
+        recipecards.user
+      end
+    end
+
+    def my_recipeingredients
+      RecipeIngredient.all.select do |recipeingredients|
+        recipeingredients.recipe == self
+      end
+    end
+
+    def ingredients
+      my_recipeingredients.map do |recipeingredients|
+        recipeingredients.ingredient
+      end
+    end 
+
+
+
     def self.all
         @@all
     end
+
+
 end
 
 
